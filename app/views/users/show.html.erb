@@ -1,0 +1,100 @@
+<h1>Datos del Usuario</h1>
+<p>
+  <strong>
+    Identificacion:
+  </strong>
+
+  <%= @user.identification %>
+</p>
+
+<p>
+  <strong>
+    Primer nombre:
+  </strong>
+
+  <%= @user.firtsname %>
+</p>
+
+<p>
+  <strong>
+    Apellidos:
+  </strong>
+
+  <%= @user.lastname %>
+</p>
+
+<p>
+  <strong>
+    Genero:
+  </strong>
+
+  <%= @user.gender %>
+</p>
+
+<p>
+  <strong>
+    Telefono:
+  </strong>
+
+  <%= @user.phone %>
+</p>
+
+<p>
+  <strong>
+    Rol:
+  </strong>
+
+  <%= @user.role %>
+</p>
+
+<p>
+  <strong>
+   E-mail:
+  </strong>
+
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>
+    Estado:
+  </strong>
+
+  <%= @user.state %>
+</p>
+
+<h2> Asistencia</h2>
+<% @user.assistances.each do |assistance| %>
+  <p>
+    <strong>
+      Fecha de Ingreso:
+    </strong>
+    <%= assistance.fecha_ingreso %>
+  </p>
+
+  <p>
+    <strong>
+      Fecha de Egreso:
+    </strong>
+    <%= assistance.fecha_egreso %>
+  </p>
+
+  <% end %>
+
+<h2>Asistencia:</h2>
+<%= form_with(model: [ @user, @user.assistances.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :fecha_ingreso %><br>
+    <%= form.text_field :fecha_ingreso %>
+  </p>
+  <p>
+    <%= form.label :fecha_egreso %><br>
+    <%= form.text_field :fecha_egreso %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

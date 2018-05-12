@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fecha_ingreso: 2018-05-06 18:12:23
+  fecha_egreso: 2018-05-06 18:12:23
+  user: one
+
+two:
+  fecha_ingreso: 2018-05-06 18:12:23
+  fecha_egreso: 2018-05-06 18:12:23
+  user: two
