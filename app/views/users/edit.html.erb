@@ -1,73 +1,48 @@
-<h1>Editar Usuario</h1>
+<div class="container">
+  <h3 class="title">Editar Usuario</h3>
+  <div class="page-content">
+    <%= form_with(model: @user, local: true) do |form| %>
 
-<%= form_with(model: @user, local: true) do |form| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@user.errors.count, "error") %> prohibited
+            this user from being saved:
+          </h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
 
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@user.errors.count, "error") %> prohibited
-        this user from being saved:
-      </h2>
-      <ul>
-        <% @user.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <%= form.label :identification, 'Identificacion' %>
+        <%= form.text_field :identification %>
 
-  <p>
-    <%= form.label :identification %>
-    <br>
-    <%= form.text_field :identification %>
-  </p>
+        <%= form.label :firtsname, 'Nombres' %>
+        <%= form.text_field :firtsname %>
 
-  <p>
-    <%= form.label :firtsname %>
-    <br>
-    <%= form.text_field :firtsname %>
-  </p>
+        <%= form.label :lastname, 'Apellidos' %>
+        <%= form.text_field :lastname %>
 
-  <p>
-    <%= form.label :lastname %>
-    <br>
-    <%= form.text_field :lastname %>
-  </p>
+        <%= form.label :gender, 'Genero' %>
+        <%= form.text_field :gender %>
 
-  <p>
-    <%= form.label :gender %>
-    <br>
-    <%= form.text_field :gender %>
-  </p>
+        <%= form.label :phone, 'Telefono' %>
+        <%= form.text_field :phone %>
 
-  <p>
-    <%= form.label :phone %>
-    <br>
-    <%= form.text_field :phone %>
-  </p>
+        <%= form.label :role, 'Rol' %>
+        <%= form.text_field :role %>
 
-  <p>
-    <%= form.label :role %>
-    <br>
-    <%= form.text_field :role %>
-  </p>
+        <%= form.label :email, 'Correo' %>
+        <%= form.text_field :email %>
 
-  <p>
-    <%= form.label :email %>
-    <br>
-    <%= form.text_field :email %>
-  </p>
+        <%= form.label :password, 'Contrasena' %>
+        <%= form.text_field :password, type: 'password' %>
 
-  <p>
-    <%= form.label :password %>
-    <br>
-    <%= form.text_field :password %>
-  </p>
-
-  <p>
-    <%= form.submit %>
-  </p>
-
-<% end %>
-
-<%= link_to 'Back', user_path %>
+        <%= form.submit 'Guardar usuario' %> |
+      <%= link_to 'Atras', users_path, class: 'button button-outline' %>
+    <% end %>
+  </div>
+</div>

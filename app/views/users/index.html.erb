@@ -1,74 +1,80 @@
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>IDENTIFICACION</th>
-    <th>NOMBRES</th>
-    <th>APELLIDOS</th>
-    <th>GENERO</th>
-    <th>TELEFONO</th>
-    <th>ROL</th>
-    <th>E-MAIL</th>
-    <th>ESTADO</th>
-    <th colspan="3"> </th>
-  </tr>
-  </thead>
+<div class="container">
 
-  <tbody>
-  <% @users.each do |user|
-  %>
+  <h3 class="title">Usuarios</h3>
+  <div class="page-content">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>IDENTIFICACION</th>
+        <th>NOMBRES</th>
+        <th>APELLIDOS</th>
+        <th>GENERO</th>
+        <th>TELEFONO</th>
+        <th>ROL</th>
+        <th>E-MAIL</th>
+        <th>ESTADO</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
 
-    <tr>
-      <td>
-        <%= user.id %>
-      </td>
+      <tbody>
+      <% @users.each do |user|
+      %>
 
-      <td>
-        <%= user.identification %>
-      </td>
+        <tr>
+          <td>
+            <%= user.id %>
+          </td>
 
-      <td>
-        <%= user.firtsname %>
-      </td>
+          <td>
+            <%= user.identification %>
+          </td>
 
-      <td>
-        <%= user.lastname %>
-      </td>
+          <td>
+            <%= user.firtsname %>
+          </td>
 
-      <td>
-        <%= user.gender %>
-      </td>
+          <td>
+            <%= user.lastname %>
+          </td>
 
-      <td>
-        <%= user.phone %>
-      </td>
+          <td>
+            <%= user.gender %>
+          </td>
 
-      <td>
-        <%= user.role %>
-      </td>
+          <td>
+            <%= user.phone %>
+          </td>
 
-      <td>
-        <%= user.email %>
-      </td>
+          <td>
+            <%= user.role %>
+          </td>
 
-      <td>
-        <%= user.state %>
-      </td>
+          <td>
+            <%= user.email %>
+          </td>
 
-      <td>
-        <%= link_to "Show", user %>
-      </td>
+          <td>
+            <%= user.state %>
+          </td>
 
-      <td>
-        <%= link_to "Edit", edit_user_path(user) %>
-      </td>
+          <td>
+            <%= link_to "Ver", user %>
+          </td>
 
-      <td>
-        <%= link_to "Delete", user, method: :delete, data: {confirm: "Esta seguro de eliminar este usuario?"} %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+          <td>
+            <%= link_to "Editar", edit_user_path(user) %>
+          </td>
 
-<%= link_to "Create New User", new_user_path %>
+          <td>
+            <%= link_to "Eliminar", user, method: :delete, data: {confirm: "Esta seguro de eliminar este usuario?"} %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to "Crear usuario", new_user_path, class: 'button' %>
+  </div>
+</div>

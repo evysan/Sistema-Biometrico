@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   resources :users
   resources :assistances
 
+  post '/users/registerhash', to: 'users#register_hash'
+
+  get '/', to: 'users#index'
+
   get '/login/', to: 'auth#index', as: 'login'
 
   get '/logout', to: 'auth#logout'

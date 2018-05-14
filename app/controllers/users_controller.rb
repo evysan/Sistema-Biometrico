@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :register_hash
+  skip_before_action :require_login, only: :register_hash
 
   def new
-
   end
 
   def create
+    hostname = 'localhost'
+    port = 23456
     @user = User.new(user_params)
     @user.save
+    s = TCPSocket.new(hostname, port)
+    s.puts("{ \"userid\": #{@user.id}, \"method\": \"register\" }")
+    s.close
     redirect_to @user
   end
 
@@ -24,8 +30,9 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-
+    unless User.is_admin?(@user)
+      @user.destroy
+    end
     redirect_to users_path
   end
 
@@ -38,7 +45,10 @@ class UsersController < ApplicationController
     end
   end
 
-
+  def register_hash
+    @user = User.find(params[:id])
+    @user.update_attribute('shahash', params[:shahash])
+  end
 
 
   private

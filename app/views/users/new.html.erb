@@ -1,59 +1,46 @@
-<h1>Nuevo Usuario</h1>
-<%= form_with scope:
-  :user, url: users_path, local: true do
-  |form| %>
+<div class="container">
 
-<p>
-  <%= form.label :firtsname %>
-  <br>
-  <%= form.text_field :firtsname %>
-</p>
+  <h3 class="title">Nuevo Usuario</h3>
+  <div class="page-content">
+    <%= form_with scope:
+                      :user, url: users_path, local: true do
+    |form| %>
 
-  <p>
-    <%= form.label :lastname %>
-    <br>
-    <%= form.text_field :lastname %>
-  </p>
+      <fieldset>
+        <%= form.label :firstname, 'Nombres'%>
+        <%= form.text_field :firtsname %>
 
-  <p>
-    <%= form.label :gender %>
-    <br>
-    <%= form.text_field :gender %>
-  </p>
+        <%= form.label :lastname, 'Apellidos' %>
+        <%= form.text_field :lastname %>
 
-  <p>
-    <%= form.label :phone %>
-    <br>
-    <%= form.text_field :phone %>
-  </p>
+        <%= form.label :gender, 'Genero' %>
+        <select name="user[gender]" id="user_gender">
+          <option value="F">Femenino</option>
+          <option value="M">Masculino</option>
+        </select>
 
-  <p>
-    <%= form.label :role %>
-    <br>
-    <%= form.text_field :role %>
-  </p>
+        <%= form.label :phone, 'Telefono' %>
+        <%= form.text_field :phone, type: 'tel' %>
 
-  <p>
-    <%= form.label :identification %>
-    <br>
-    <%= form.text_field :identification %>
-  </p>
+        <%= form.label :role, 'Rol' %>
+        <select name="user[role]" id="user_role">
+          <option value="docente">Docente</option>
+          <option value="admin">Administrador</option>
+        </select>
 
-  <p>
-    <%= form.label :email %>
-    <br>
-    <%= form.text_field :email %>
-  </p>
+        <%= form.label :identification, 'Identificacion' %>
+        <%= form.text_field :identification, type: 'number' %>
+
+        <%= form.label :email, 'Correo' %>
+        <%= form.text_field :email, type: 'email' %>
 
 
-  <p>
-    <%= form.label :password %>
-    <br>
-    <%= form.text_field :password %>
-  </p>
+        <%= form.label :password, 'Contrasena' %>
+        <%= form.text_field :password, type: 'password' %>
 
-<p>
-  <%= form.submit %>
-</p>
-
-<% end %>
+        <%= form.submit 'Crear usuario', class: 'button-primary' %> |
+        <%= link_to 'Atras', users_path, class: 'button button-outline' %>
+      </fieldset>
+    <% end %>
+  </div>
+</div>

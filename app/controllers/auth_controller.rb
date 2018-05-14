@@ -1,7 +1,14 @@
 class AuthController < ApplicationController
   skip_before_action :require_login, only: [:index, :login]
 
+=begin
+  Si el usuario esta autenticado no se le debe mostrar
+  el formulario de login.
+=end
   def index
+    if is_user_logged?
+      redirect_to users_path
+    end
   end
 
   def login

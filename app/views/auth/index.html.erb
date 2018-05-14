@@ -1,32 +1,28 @@
-<h1>LOGIN</h1>
+<div class="container-login">
+  <div class="page-login">
+    <h3 class="login-title">Iniciar sesion</h3>
 
-  <% flash.each do |msg_type, msg| %>
-  <p>
-    <%= msg %>
-  </p>
-  <% end %>
+    <div class="page-login">
+      <% flash.each do |msg_type, msg| %>
+        <p>
+          <%= msg %>
+        </p>
+      <% end %>
 
-<%= form_with scope:
-    :login, url: login_path, local: true do
-    |form| %>
+      <%= form_with scope:
+                        :login, url: login_path, local: true do
+      |form| %>
+        <fieldset>
+          <%= form.label :identification, 'Identificacion' %>
+          <%= form.text_field :identification %>
 
-  <p>
-    <%= form.label :identification %>
-    <br>
-    <%= form.text_field :identification %>
-  </p>
+          <%= form.label :password, 'Contrasena' %>
+          <%= form.text_field :password, type: 'password' %>
 
-  <p>
-    <%= form.label :password %>
-    <br>
-    <%= form.text_field :password %>
-  </p>
+          <%= form.submit 'Iniciar sesion' %>
+        </fieldset>
 
-
-  <p>
-    <%= form.submit %>
-  </p>
-
-<% end %>
-
-
+      <% end %>
+    </div>
+  </div>
+</div>

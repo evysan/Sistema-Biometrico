@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_08_010327) do
+ActiveRecord::Schema.define(version: 2018_05_13_190803) do
 
   create_table "assistances", force: :cascade do |t|
     t.datetime "fecha_ingreso"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_05_08_010327) do
     t.datetime "updated_at", null: false
     t.string "state", default: "Inactivo"
     t.string "password"
+    t.string "shahash"
   end
 
 end
