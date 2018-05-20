@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users
-  resources :assistances
+  resources :users do
+    resources :assistances
+  end
 
   post '/users/registerhash', to: 'users#register_hash'
 

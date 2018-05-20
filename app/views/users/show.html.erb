@@ -71,29 +71,25 @@
 
     <h2> Asistencia</h2>
   <% @user.assistances.each do |assistance| %>
-    <p>
       <strong>
         Fecha de Ingreso:
       </strong>
-      <% assistance.fecha_ingreso %>
-    </p>
+      <%= assistance.fecha_ingreso %>
 
-    <p>
       <strong>
         Fecha de Egreso:
       </strong>
-      <% assistance.fecha_egreso %>
-    </p>
+      <%= assistance.fecha_egreso %>
 
     <% end %>
 
   <h2>Asistencia:</h2>
   <%= form_with(model: [ @user, @user.assistances.build ], local: true) do |form| %>
-      <% form.label :fecha_ingreso %>
-      <% form.text_field :fecha_ingreso %>
-      <% form.label :fecha_egreso %>
-      <% form.text_field :fecha_egreso %>
-      <% form.submit %>
+      <%= form.label :fecha_ingreso %>
+      <%= form.text_field :fecha_ingreso %>
+      <%= form.label :fecha_egreso %>
+      <%= form.text_field :fecha_egreso %>
+      <%= form.submit %>
   <% end %>
 
     <%= link_to 'Editar', edit_user_path(@user), class: 'button' %> |
