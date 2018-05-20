@@ -71,16 +71,21 @@
 
     <h2> Asistencia</h2>
   <% @user.assistances.each do |assistance| %>
-      <strong>
-        Fecha de Ingreso:
-      </strong>
-      <%= assistance.fecha_ingreso %>
+      <ul>
+        <li>
+          <strong>
+            Fecha de Ingreso:
+          </strong>
+          <%= assistance.fecha_ingreso %>
+        </li>
 
-      <strong>
-        Fecha de Egreso:
-      </strong>
-      <%= assistance.fecha_egreso %>
-
+        <li>
+          <strong>
+            Fecha de Egreso:
+          </strong>
+          <%= assistance.fecha_egreso %>
+        </li>
+      </ul>
     <% end %>
 
   <h2>Asistencia:</h2>
