@@ -50,9 +50,18 @@ class UsersController < ApplicationController
     @user.update_attribute('shahash', params[:shahash])
   end
 
+  def find_user_by_hash
+    @user = User.find_by_shahash(params[:shahash])
+    @assistence = @user.assistances.create(assistance_params)
+  end
+
 
   private
   def user_params
     params.require(:user).permit(:firtsname, :lastname, :gender, :phone, :role, :identification, :email, :password)
+  end
+
+  def assistance_params
+    params.require(:assistance).permit(:fecha_ingreso, :fecha_egreso)
   end
 end
