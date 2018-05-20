@@ -85,21 +85,15 @@
       <%assistance.fecha_egreso %>
     </p>
 
-    <%end %>
+    <% end %>
 
   <h2>Asistencia:</h2>
   <% form_with(model: [ @user, @user.assistances.build ], local: true) do |form| %>
-    <p>
-      <%form.label :fecha_ingreso %><br>
-      <%form.text_field :fecha_ingreso %>
-    </p>
-    <p>
-      <%form.label :fecha_egreso %><br>
-      <%form.text_field :fecha_egreso %>
-    </p>
-    <p>
-      <%form.submit %>
-    </p>
+      <% form.label :fecha_ingreso %>
+      <% form.text_field :fecha_ingreso %>
+      <% form.label :fecha_egreso %>
+      <% form.text_field :fecha_egreso %>
+      <% form.submit %>
   <% end %>
 
     <%= link_to 'Editar', edit_user_path(@user), class: 'button' %> |
