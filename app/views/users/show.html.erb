@@ -68,34 +68,39 @@
       </li>
     </ul>
 
+    <div>
+        <div>
+          <h2> Asistencia</h2>
+          <% @user.assistances.each do |assistance| %>
+            <ul>
+              <li>
+                <strong>
+                  Fecha de Ingreso:
+                </strong>
+              <%= assistance.fecha_ingreso %>
+            </li>
 
-    <h2> Asistencia</h2>
-  <% @user.assistances.each do |assistance| %>
-      <ul>
-        <li>
-          <strong>
-            Fecha de Ingreso:
-          </strong>
-          <%= assistance.fecha_ingreso %>
-        </li>
+            <li>
+              <strong>
+                Fecha de Egreso:
+              </strong>
+              <%= assistance.fecha_egreso %>
+            </li>
+          </ul>
+        <% end %>
+       </div>
 
-        <li>
-          <strong>
-            Fecha de Egreso:
-          </strong>
-          <%= assistance.fecha_egreso %>
-        </li>
-      </ul>
-    <% end %>
-
-  <h2>Asistencia:</h2>
-  <%= form_with(model: [ @user, @user.assistances.build ], local: true) do |form| %>
-      <%= form.label :fecha_ingreso %>
-      <%= form.text_field :fecha_ingreso %>
-      <%= form.label :fecha_egreso %>
-      <%= form.text_field :fecha_egreso %>
-      <%= form.submit %>
-  <% end %>
+      <div>
+        <h2>Asistencia:</h2>
+        <%= form_with(model: [@user, @user.assistances.build], local: true) do |form| %>
+          <%= form.label :fecha_ingreso %>
+          <%= form.text_field :fecha_ingreso %>
+          <%= form.label :fecha_egreso %>
+          <%= form.text_field :fecha_egreso %>
+          <%= form.submit %>
+        <% end %>
+      </div>
+    </div>
 
     <%= link_to 'Editar', edit_user_path(@user), class: 'button' %> |
     <%= link_to 'Atras', users_path, class: 'button button-outline' %>
