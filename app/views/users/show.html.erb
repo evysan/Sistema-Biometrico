@@ -70,25 +70,25 @@
 
 
     <h2> Asistencia</h2>
-  <%@user.assistances.each do |assistance| %>
+  <% @user.assistances.each do |assistance| %>
     <p>
       <strong>
         Fecha de Ingreso:
       </strong>
-      <%assistance.fecha_ingreso %>
+      <% assistance.fecha_ingreso %>
     </p>
 
     <p>
       <strong>
         Fecha de Egreso:
       </strong>
-      <%assistance.fecha_egreso %>
+      <% assistance.fecha_egreso %>
     </p>
 
     <% end %>
 
   <h2>Asistencia:</h2>
-  <% form_with(model: [ @user, @user.assistances.build ], local: true) do |form| %>
+  <%= form_with(model: [ @user, @user.assistances.build ], local: true) do |form| %>
       <% form.label :fecha_ingreso %>
       <% form.text_field :fecha_ingreso %>
       <% form.label :fecha_egreso %>
