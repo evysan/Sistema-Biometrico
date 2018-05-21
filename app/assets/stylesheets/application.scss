@@ -14,7 +14,9 @@
  *= require_self
  */
 
-@import "milligram/src/milligram.sass";
+$color-primary: #9a5c71;
+@import 'milligram/src/milligram.sass';
+
 
 .container-login {
     margin: 0 auto;

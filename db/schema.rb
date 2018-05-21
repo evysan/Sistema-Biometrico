@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_13_190803) do
+ActiveRecord::Schema.define(version: 2018_05_20_214543) do
 
   create_table "assistances", force: :cascade do |t|
-    t.datetime "fecha_ingreso"
-    t.datetime "fecha_egreso"
+    t.datetime "fecha_ingreso", null: false
+    t.datetime "fecha_egreso", null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

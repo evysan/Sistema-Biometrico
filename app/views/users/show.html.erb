@@ -1,106 +1,113 @@
 <div class="container">
 
-  <h3 class="title">Datos del Usuario</h3>
   <div class="page-content">
-    <ul>
-      <li>
-        <strong>
-          Identificacion:
-        </strong>
-
-        <%= @user.identification %>
-      </li>
-
-      <li>
-        <strong>
-          Primer nombre:
-        </strong>
-
-        <%= @user.firtsname %>
-      </li>
-
-      <li>
-        <strong>
-          Apellidos:
-        </strong>
-
-        <%= @user.lastname %>
-      </li>
-
-      <li>
-        <strong>
-          Genero:
-        </strong>
-
-        <%= @user.gender %>
-      </li>
-
-      <li>
-        <strong>
-          Telefono:
-        </strong>
-
-        <%= @user.phone %>
-      </li>
-
-      <li>
-        <strong>
-          Rol:
-        </strong>
-
-        <%= @user.role %>
-      </li>
-
-      <li>
-        <strong>
-          E-mail:
-        </strong>
-
-        <%= @user.email %>
-      </li>
-
-      <li>
-        <strong>
-          Estado:
-        </strong>
-
-        <%= @user.state %>
-      </li>
-    </ul>
 
     <div class="padre">
-        <div class="hijo">
-          <h2> Asistencia</h2>
-          <% @user.assistances.each do |assistance| %>
-            <ul>
-              <li>
-                <strong>
-                  Fecha de Ingreso:
-                </strong>
-              <%= assistance.fecha_ingreso %>
-            </li>
-
-            <li>
-              <strong>
-                Fecha de Egreso:
-              </strong>
-              <%= assistance.fecha_egreso %>
-            </li>
-          </ul>
-        <% end %>
-       </div>
-
       <div class="hijo">
-        <h2>Asistencia:</h2>
+        <h3 class="title">Datos del Usuario</h3>
+        <ul>
+          <li>
+            <strong>
+              Identificacion:
+            </strong>
+
+            <%= @user.identification %>
+          </li>
+
+          <li>
+            <strong>
+              Primer nombre:
+            </strong>
+
+            <%= @user.firtsname %>
+          </li>
+
+          <li>
+            <strong>
+              Apellidos:
+            </strong>
+
+            <%= @user.lastname %>
+          </li>
+
+          <li>
+            <strong>
+              Genero:
+            </strong>
+
+            <%= @user.gender %>
+          </li>
+
+          <li>
+            <strong>
+              Telefono:
+            </strong>
+
+            <%= @user.phone %>
+          </li>
+
+          <li>
+            <strong>
+              Rol:
+            </strong>
+
+            <%= @user.role %>
+          </li>
+
+          <li>
+            <strong>
+              E-mail:
+            </strong>
+
+            <%= @user.email %>
+          </li>
+
+          <li>
+            <strong>
+              Estado:
+            </strong>
+
+            <%= @user.state %>
+          </li>
+        </ul>
+      </div>
+      <div class="hijo">
+        <h3 class="title">Registrar asistencia</h3>
         <%= form_with(model: [@user, @user.assistances.build], local: true) do |form| %>
           <%= form.label :fecha_ingreso %>
           <%= form.text_field :fecha_ingreso %>
           <%= form.label :fecha_egreso %>
           <%= form.text_field :fecha_egreso %>
-          <%= form.submit %>
+          <%= form.submit 'Registrar asistencia' %>
         <% end %>
+
       </div>
+
+
     </div>
+
+    <% if @user.assistances.length > 1 %>
+
+      <h2 class="title">Asistencias</h2>
+      <table>
+        <thead>
+        <tr>
+          <th>Fecha Ingreso</th>
+          <th>Fecha Egreso</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @user.assistances.each do |assistance| %>
+          <tr>
+            <td><%= assistance.fecha_ingreso %></td>
+            <td><%= assistance.fecha_egreso %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
 
     <%= link_to 'Editar', edit_user_path(@user), class: 'button' %> |
     <%= link_to 'Atras', users_path, class: 'button button-outline' %>

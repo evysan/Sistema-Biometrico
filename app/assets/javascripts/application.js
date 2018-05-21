@@ -13,6 +13,7 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery3
 //= require_tree .
 "use strict";
 !function() {
@@ -66,3 +67,13 @@
                 i.parentNode.insertBefore(r, i)
         }(window, document, "script")
     }();
+
+$('document').ready(function () {
+    $('#maintenance-checkbox').on('click', function() {
+        $.ajax({
+            type: 'POST',
+            url: '/maintenance/toggle',
+            data: { toggle: $(this).is(':checked') }
+        });
+    });
+});

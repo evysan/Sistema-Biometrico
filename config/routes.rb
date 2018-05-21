@@ -14,4 +14,8 @@ Rails.application.routes.draw do
 
   post '/login/', to: 'auth#login'
 
+  post '/maintenance/toggle', to: 'users#toggle_maintenance'
+
+  post '/users/registerassistance', to: 'users#register_assistance'
+
 end

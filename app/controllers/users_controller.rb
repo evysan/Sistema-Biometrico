@@ -6,13 +6,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    hostname = 'localhost'
-    port = 23456
+    #hostname = 'localhost'
+    #port = 23456
     @user = User.new(user_params)
     @user.save
-    s = TCPSocket.new(hostname, port)
-    s.puts("{ \"userid\": #{@user.id}, \"method\": \"register\" }")
-    s.close
+    #s = TCPSocket.new(hostname, port)
+    #s.puts("{ \"userid\": #{@user.id}, \"method\": \"register\" }")
+    #s.close
     redirect_to @user
   end
 
@@ -50,9 +50,22 @@ class UsersController < ApplicationController
     @user.update_attribute('shahash', params[:shahash])
   end
 
-  def find_user_by_hash
+  def register_assistance
     @user = User.find_by_shahash(params[:shahash])
-    @assistence = @user.assistances.create(assistance_params)
+    @assistence = User.find_by_sql("SELECT * FROM users INNER JOIN assistances ON users.id = assistances.user_id WHERE fecha_ingreso != NULL AND fecha_egreso = NULL")
+    if @assistence.nil?
+      @assistence = @user.assistances.create(fecha_ingreso: params[:fecha])
+    else
+      @assistence = @user.assistances.create(fecha_egreso: params[:fecha])
+    end
+  end
+
+  def toggle_maintenance
+    hostname = 'localhost'
+    port = 23456
+    s = TCPSocket.new(hostname, port)
+    s.puts("{ \"maintenance_mode\": #{params[:toggle]}, \"method\": \"maintenance\" }")
+    s.close
   end
 
 
