@@ -7,7 +7,7 @@ class AssistancesController < ApplicationController
 
   private
   def assistance_params
-    params.require(:assistance).permit(:fecha_ingreso, :fecha_egreso)
+    params.require(:assistance).permit(:fecha, :accion)
   end
 
 end

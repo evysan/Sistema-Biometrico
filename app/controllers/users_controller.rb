@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:register_hash, :register_assistance]
-  skip_before_action :require_login, only: :register_hash
+  skip_before_action :require_login, only: [:register_hash, :register_assistance]
 
   def new
   end
@@ -52,11 +52,17 @@ class UsersController < ApplicationController
 
   def register_assistance
     @user = User.find_by_shahash(params[:shahash])
-    @assistence = User.find_by_sql("SELECT * FROM users INNER JOIN assistances ON users.id = assistances.user_id WHERE fecha_ingreso != NULL AND fecha_egreso = NULL")
+    @assistance = @user.assistances.last
     if @assistence.nil?
-      @assistence = @user.assistances.create(fecha_ingreso: params[:fecha])
+      @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
     else
-      @assistence = @user.assistances.create(fecha_egreso: params[:fecha])
+      @accion = ''
+      if @assistance.accion == 'ingreso'
+        @accion = 'egreso'
+      else
+        @accion = 'ingreso'
+      end
+      @assistance = @user.assistances.create(fecha: params[:fecha], accion: @accion)
     end
   end
 
@@ -75,6 +81,6 @@ class UsersController < ApplicationController
   end
 
   def assistance_params
-    params.require(:assistance).permit(:fecha_ingreso, :fecha_egreso)
+    params.require(:assistance).permit(:fecha, :accion)
   end
 end

@@ -74,10 +74,13 @@
       <div class="hijo">
         <h3 class="title">Registrar asistencia</h3>
         <%= form_with(model: [@user, @user.assistances.build], local: true) do |form| %>
-          <%= form.label :fecha_ingreso %>
-          <%= form.text_field :fecha_ingreso %>
-          <%= form.label :fecha_egreso %>
-          <%= form.text_field :fecha_egreso %>
+          <%= form.label :fecha %>
+          <%= form.text_field :fecha %>
+          <%= form.label :accion %>
+          <select name="assistance[accion]" id="assistance_accion">
+            <option value="ingreso">Ingreso</option>
+            <option value="egreso">Egreso</option>
+          </select>
           <%= form.submit 'Registrar asistencia' %>
         <% end %>
 
@@ -92,16 +95,16 @@
       <table>
         <thead>
         <tr>
-          <th>Fecha Ingreso</th>
-          <th>Fecha Egreso</th>
+          <th>Fecha y hora</th>
+          <th>Accion</th>
         </tr>
         </thead>
 
         <tbody>
         <% @user.assistances.each do |assistance| %>
           <tr>
-            <td><%= assistance.fecha_ingreso %></td>
-            <td><%= assistance.fecha_egreso %></td>
+            <td><%= assistance.fecha %></td>
+            <td><%= assistance.accion %></td>
           </tr>
         <% end %>
         </tbody>
