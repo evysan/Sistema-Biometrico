@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   def register_assistance
     @user = User.find_by_shahash(params[:shahash])
     @assistance = @user.assistances.last
-    if @assistence.nil?
+    if @assistance.nil?
       @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
     else
       @accion = ''
