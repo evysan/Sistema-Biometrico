@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :register_hash
+  skip_before_action :verify_authenticity_token, only: [:register_hash, :register_assistance]
   skip_before_action :require_login, only: :register_hash
 
   def new
   end
 
   def create
-    #hostname = 'localhost'
-    #port = 23456
+    hostname = 'localhost'
+    port = 23456
     @user = User.new(user_params)
     @user.save
-    #s = TCPSocket.new(hostname, port)
-    #s.puts("{ \"userid\": #{@user.id}, \"method\": \"register\" }")
-    #s.close
+    s = TCPSocket.new(hostname, port)
+    s.puts("{ \"userid\": #{@user.id}, \"method\": \"register\" }")
+    s.close
     redirect_to @user
   end
 
