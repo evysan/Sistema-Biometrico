@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:register_hash, :register_assistance]
+  skip_before_action :verify_authenticity_token, only: [:register_hash, :register_assistance, :toggle_maintenance]
   skip_before_action :require_login, only: [:register_hash, :register_assistance]
 
   def new
@@ -78,9 +78,5 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:firtsname, :lastname, :gender, :phone, :role, :identification, :email, :password)
-  end
-
-  def assistance_params
-    params.require(:assistance).permit(:fecha, :accion)
   end
 end
