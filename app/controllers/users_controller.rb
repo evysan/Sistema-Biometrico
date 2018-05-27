@@ -61,15 +61,15 @@ class UsersController < ApplicationController
     @assistance = @user.assistances.last
     if @assistance.nil?
       @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
-      "Hola #{@user.firtsname}"
+      render plain: "Hola #{@user.firtsname}"
     else
       @accion = ''
       if @assistance.accion == 'ingreso'
         @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'egreso')
-        return "Adios #{@user.firtsname}"
+        return render plain: "Adios #{@user.firtsname}"
       else
         @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
-        return "Hola #{@user.firtsname}"
+        return render plain: "Hola #{@user.firtsname}"
       end
     end
   end
