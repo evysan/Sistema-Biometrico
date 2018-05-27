@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def index
-  @users = User.all
+    @users = User.all
   end
 
   def show
@@ -61,7 +61,11 @@ class UsersController < ApplicationController
     @assistance = @user.assistances.last
     if @assistance.nil?
       @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
-      render plain: "Hola #{@user.firtsname}"
+      if @user.gender == 'F'
+        return render plain: "Bienvenida #{@user.firtsname}"
+      else
+        return render plain: "Bienvenido #{@user.firtsname}"
+      end
     else
       @accion = ''
       if @assistance.accion == 'ingreso'
@@ -69,7 +73,11 @@ class UsersController < ApplicationController
         return render plain: "Adios #{@user.firtsname}"
       else
         @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
-        return render plain: "Hola #{@user.firtsname}"
+        if @user.gender == 'F'
+          return render plain: "Bienvenida #{@user.firtsname}"
+        else
+          return render plain: "Bienvenido #{@user.firtsname}"
+        end
       end
     end
   end
@@ -84,6 +92,7 @@ class UsersController < ApplicationController
 
 
   private
+
   def user_params
     params.require(:user).permit(:firtsname, :lastname, :gender, :phone, :role, :identification, :email, :password)
   end
