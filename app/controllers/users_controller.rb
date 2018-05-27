@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def shutdown
-    system 'shutdown -h now'
+    system 'sudo shutdown -h now'
   end
 
   def register_hash
