@@ -17,31 +17,37 @@
         </div>
       <% end %>
 
-        <%= form.label :identification, 'Identificacion' %>
-        <%= form.text_field :identification %>
+      <%= form.label :identification, 'Identificacion' %>
+      <%= form.text_field :identification %>
 
-        <%= form.label :firtsname, 'Nombres' %>
-        <%= form.text_field :firtsname %>
+      <%= form.label :firtsname, 'Nombres' %>
+      <%= form.text_field :firtsname %>
 
-        <%= form.label :lastname, 'Apellidos' %>
-        <%= form.text_field :lastname %>
+      <%= form.label :lastname, 'Apellidos' %>
+      <%= form.text_field :lastname %>
 
-        <%= form.label :gender, 'Genero' %>
-        <%= form.text_field :gender %>
+      <%= form.label :gender, 'Genero' %>
+      <select name="user[gender]" id="user_gender">
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+      </select>
 
-        <%= form.label :phone, 'Telefono' %>
-        <%= form.text_field :phone %>
+      <%= form.label :phone, 'Telefono' %>
+      <%= form.text_field :phone %>
 
-        <%= form.label :role, 'Rol' %>
-        <%= form.text_field :role %>
+      <%= form.label :role, 'Rol' %>
+      <select name="user[role]" id="user_role">
+        <option value="docente">Docente</option>
+        <option value="admin">Administrador</option>
+      </select>
 
-        <%= form.label :email, 'Correo' %>
-        <%= form.text_field :email %>
+      <%= form.label :email, 'Correo' %>
+      <%= form.text_field :email %>
 
-        <%= form.label :password, 'Contrasena' %>
-        <%= form.text_field :password, type: 'password' %>
+      <%= form.label :password, 'Contrasena' %>
+      <%= form.text_field :password, type: 'password' %>
 
-        <%= form.submit 'Guardar usuario' %> |
+      <%= form.submit 'Guardar usuario' %> |
       <%= link_to 'Atras', users_path, class: 'button button-outline' %>
     <% end %>
   </div>
