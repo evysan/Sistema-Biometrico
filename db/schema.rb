@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_214543) do
+ActiveRecord::Schema.define(version: 2018_05_27_005126) do
 
   create_table "assistances", force: :cascade do |t|
-    t.datetime "fecha_ingreso", null: false
-    t.datetime "fecha_egreso", null: false
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "fecha"
+    t.string "accion"
     t.index ["user_id"], name: "index_assistances_on_user_id"
   end
 
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2018_05_20_214543) do
     t.string "state", default: "Inactivo"
     t.string "password"
     t.string "shahash"
+    t.string "userpos"
   end
 
 end

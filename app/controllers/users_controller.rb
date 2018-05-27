@@ -31,6 +31,11 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     unless User.is_admin?(@user)
+      hostname = 'localhost'
+      port = 23456
+      s = TCPSocket.new(hostname, port)
+      s.puts("{ \"userpos\": #{@user.userpos}, \"method\": \"delete\" }")
+      s.close
       @user.destroy
     end
     redirect_to users_path
@@ -48,6 +53,7 @@ class UsersController < ApplicationController
   def register_hash
     @user = User.find(params[:id])
     @user.update_attribute('shahash', params[:shahash])
+    @user.update_attribute('userpos', params[:userpos])
   end
 
   def register_assistance

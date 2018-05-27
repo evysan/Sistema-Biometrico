@@ -18,4 +18,6 @@ Rails.application.routes.draw do
 
   post '/users/registerassistance', to: 'users#register_assistance'
 
+  get '/assistances', to: 'assistances#index'
+
 end

@@ -9,7 +9,7 @@
         </p>
       <% end %>
 
-      <img src="assets/logopalmitas.jpg" height="150px" width="145px" alt="">
+      <%= image_tag "logopalmitas.jpg", :height => 150, :width => 145 %>
 
       <%= form_with scope:
                         :login, url: login_path, local: true do

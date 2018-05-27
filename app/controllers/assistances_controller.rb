@@ -1,8 +1,12 @@
 class AssistancesController < ApplicationController
+  def index
+    @users = User.all
+  end
+
   def create
     @user = User.find(params[:user_id])
     @assistance = @user.assistances.create(assistance_params)
-    redirect_to users_path(@user)
+    redirect_to user_path(@user)
   end
 
   private
