@@ -1,6 +1,6 @@
 class AssistancesController < ApplicationController
   def index
-    @users = User.all
+    @users = User.where(role: 'docente')
   end
 
   def create
