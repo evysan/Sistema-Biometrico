@@ -23,6 +23,9 @@
             <a href="/assistances/" class="navigation-link">Informes</a>
           </li>
           <li class="navigation-item">
+            <%= link_to "Eliminar", shutdown, class: "navigation-link", method: :post, data: {confirm: "Esta seguro de apagar el sistema?"} %>
+          </li>
+          <li class="navigation-item">
             <a href="/logout" class="navigation-link">Cerrar sesion</a>
           </li>
         </ul>

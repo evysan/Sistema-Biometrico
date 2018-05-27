@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   get '/assistances', to: 'assistances#index'
 
+  post '/shutdown', to: 'users#shutdown'
+
 end
