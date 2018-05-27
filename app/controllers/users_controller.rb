@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
 
   def shutdown
-    puts %x{shutdown -h now}
+    system 'shutdown -h now'
   end
 
   def register_hash
