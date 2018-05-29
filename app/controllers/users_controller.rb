@@ -62,27 +62,19 @@ class UsersController < ApplicationController
 
   def register_assistance
     @user = User.find_by_shahash(params[:shahash])
-    @assistance = @user.assistances.last
-    if @assistance.nil?
-      @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
+    @assistances = @user.assistances.where("DATE(fecha) = ?", Date.today).count
+    if @assistances == 0
+      @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
       if @user.gender == 'F'
         return render plain: "Bienvenida #{@user.firtsname}"
       else
         return render plain: "Bienvenido #{@user.firtsname}"
       end
-    else
-      @accion = ''
-      if @assistance.accion == 'ingreso'
-        @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'egreso')
-        return render plain: "Adios #{@user.firtsname}"
-      else
-        @assistance = @user.assistances.create(fecha: params[:fecha], accion: 'ingreso')
-        if @user.gender == 'F'
-          return render plain: "Bienvenida #{@user.firtsname}"
-        else
-          return render plain: "Bienvenido #{@user.firtsname}"
-        end
-      end
+    elsif @assistances == 2
+      return render plain: "error"
+    elsif @assistances == 1
+      @user.assistances.create(fecha: params[:fecha], accion: 'egreso')
+      return render plain: "Adios #{@user.firtsname}"
     end
   end
 
@@ -93,7 +85,6 @@ class UsersController < ApplicationController
     s.puts("{ \"maintenance_mode\": #{params[:toggle]}, \"method\": \"maintenance\" }")
     s.close
   end
-
 
   private
 

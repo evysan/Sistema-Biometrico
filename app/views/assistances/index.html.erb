@@ -18,45 +18,78 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.firtsname + ' ' + user.lastname %></td>
-          <% user.assistances.order('fecha ASC').where(fecha: (Time.now.at_beginning_of_week)..(Time.now.at_end_of_week - 2.days)).each do |assistance| %>
-            <% unless assistance.fecha.nil? %>
-              <% if assistance.fecha.wday == 1 %>
-                <% if assistance.accion == 'ingreso' %>
-                  <td>Ingreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% else %>
-                  <td>Egreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% end %>
-              <% end %>
-              <% if assistance.fecha.wday == 2 %>
-                <% if assistance.accion == 'ingreso' %>
-                  <td>Ingreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% else %>
-                  <td>Egreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% end %>
-              <% end %>
-              <% if assistance.fecha.wday == 3 %>
-                <% if assistance.accion == 'ingreso' %>
-                  <td>Ingreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% else %>
-                  <td>Egreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% end %>
-              <% end %>
-              <% if assistance.fecha.wday == 4 %>
-                <% if assistance.accion == 'ingreso' %>
-                  <td>Ingreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% else %>
-                  <td>Egreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% end %>
-              <% end %>
-              <% if assistance.fecha.wday == 5 %>
-                <% if assistance.accion == 'ingreso' %>
-                  <td>Ingreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% else %>
-                  <td>Egreso: <%= assistance.fecha.strftime('%H:%M') %></td>
-                <% end %>
-              <% end %>
+          <td>
+            <% ingreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'ingreso'", Time.now.at_beginning_of_week.at_beginning_of_day, Time.now.at_beginning_of_week.at_end_of_day).first %>
+            <% unless ingreso.nil? %>
+            Ingreso: <%= ingreso.fecha.strftime('%H:%M') %>
             <% end %>
-          <% end %>
+          </td>
+          <td>
+            <% egreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'egreso'", Time.now.at_beginning_of_week.at_beginning_of_day, Time.now.at_beginning_of_week.at_end_of_day).first %>
+            <% unless egreso.nil? %>
+              Egreso: <%= egreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% ingreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'ingreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 1.days, Time.now.at_beginning_of_week.at_end_of_day + 1.days).first %>
+            <% unless ingreso.nil? %>
+              Ingreso: <%= ingreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% egreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'egreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 1.days, Time.now.at_beginning_of_week.at_end_of_day + 1.days).first %>
+            <% unless egreso.nil? %>
+              Egreso: <%= egreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% ingreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'ingreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 2.days, Time.now.at_beginning_of_week.at_end_of_day + 2.days).first %>
+            <% unless ingreso.nil? %>
+              Ingreso: <%= ingreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% egreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'egreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 2.days, Time.now.at_beginning_of_week.at_end_of_day + 2.days).first %>
+            <% unless egreso.nil? %>
+              Egreso: <%= egreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% ingreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'ingreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 3.days, Time.now.at_beginning_of_week.at_end_of_day + 3.days).first %>
+            <% unless ingreso.nil? %>
+              Ingreso: <%= ingreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% egreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'egreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 3.days, Time.now.at_beginning_of_week.at_end_of_day + 3.days).first %>
+            <% unless egreso.nil? %>
+              Egreso: <%= egreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% ingreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'ingreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 4.days, Time.now.at_beginning_of_week.at_end_of_day + 4.days).first %>
+            <% unless ingreso.nil? %>
+              Ingreso: <%= ingreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% egreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'egreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 4.days, Time.now.at_beginning_of_week.at_end_of_day + 4.days).first %>
+            <% unless egreso.nil? %>
+              Egreso: <%= egreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% ingreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'ingreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 5.days, Time.now.at_beginning_of_week.at_end_of_day + 5.days).first %>
+            <% unless ingreso.nil? %>
+              Ingreso: <%= ingreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
+          <td>
+            <% egreso = user.assistances.where("fecha >= ? and fecha <= ? and accion = 'egreso'", Time.now.at_beginning_of_week.at_beginning_of_day + 5.days, Time.now.at_beginning_of_week.at_end_of_day + 5.days).first %>
+            <% unless egreso.nil? %>
+              Egreso: <%= egreso.fecha.strftime('%H:%M') %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       </tbody>
