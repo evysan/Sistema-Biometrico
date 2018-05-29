@@ -20,12 +20,12 @@ $(document).ready(function() {
     $("#user_role").on('change',function() {
         var ocultar= $(this).val();
         if(ocultar === 'docente'){
-            $('#user_pasword_label').hide();
-            $('#user_pasword').hide();
+            $('#user_password_label').hide();
+            $('#user_password').hide();
         }
         if(ocultar === 'admin'){
-            $('#user_pasword_label').show();
-            $('#user_pasword').show();
+            $('#user_password_label').show();
+            $('#user_password').show();
         }
     });
 });
