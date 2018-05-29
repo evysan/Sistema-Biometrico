@@ -15,3 +15,17 @@
 //= require turbolinks
 //= require jquery3
 //= require_tree .
+
+$(document).ready(function() {
+    $("#user_role").on('change',function() {
+        var ocultar= $(this).val();
+        if(ocultar === 'docente'){
+            $('#user_pasword_label').hide();
+            $('#user_pasword').hide();
+        }
+        if(ocultar === 'admin'){
+            $('#user_pasword_label').show();
+            $('#user_pasword').show();
+        }
+    });
+});
