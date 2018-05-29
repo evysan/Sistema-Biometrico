@@ -17,7 +17,12 @@
 //= require_tree .
 
 $(document).ready(function() {
-    $("#user_role").on('change',function() {
+    var userrole = $("#user_role");
+    if (userrole.val() === 'docente') {
+        $('#user_password_label').hide();
+        $('#user_password').hide();
+    }
+    userrole.on('change',function() {
         var ocultar= $(this).val();
         if(ocultar === 'docente'){
             $('#user_password_label').hide();
